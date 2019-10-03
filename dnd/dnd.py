@@ -1,19 +1,9 @@
 """
 Various utilities (dice rolls, spell descriptions, character sheets, etc...) useful for playing D&D.
 """
-from pprint import pprint as pp
-import json
 import random
 
-import gspread
-from oauth2client.service_account import ServiceAccountCredentials
-
-SCOPE = ['https://spreadsheets.google.com/feeds',
-         'https://www.googleapis.com/auth/drive']
-
-#CREDENTIALS = ServiceAccountCredentials.from_json_keyfile_name('credentials.json', SCOPE)
-
-
+from character import Character
 
 def xdy(sides, amount=1):
     """
@@ -29,13 +19,24 @@ def xdy(sides, amount=1):
 
 
 def spelldesc(spellname, spellist=None):
-    pass
+    """
+    Fetch and return a spell's description.
+
+    :param str spellname: the name of the spell to describe
+    :param str spellist: option spellist the spell can be found it for efficiency
+
+    :returns: the spell's description
+    :rtype: str
+    """
+    return (spellname, spellist)  # NYI
 
 
-#gc = gspread.authorize(CREDENTIALS)
+def get_character_stats(character, stat):
+    if not isinstance(character, Character):
+        character = Character(character)
+    return getattr(char, stat)
 
-#wrksht = gc.open("DriveTest").sheet1
 
-#lis = wrksht.col_values(1)
-
-#pp(lis)
+if __name__ == "__main__":
+    char = Character("DriveTest", loadfull=True)
+    print(char.NAME)
