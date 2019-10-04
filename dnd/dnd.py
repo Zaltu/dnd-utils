@@ -1,9 +1,14 @@
 """
 Various utilities (dice rolls, spell descriptions, character sheets, etc...) useful for playing D&D.
 """
+import os
+import glob
 import random
 
 from character import Character
+
+_CHARACTER_FOLDER = "chars/*"  # TODO
+
 
 def xdy(sides, amount=1):
     """
@@ -31,19 +36,27 @@ def spelldesc(spellname, spellist=None):
     return (spellname, spellist)  # NYI
 
 
-def get_character_stats(character, stat):
-    if not isinstance(character, Character):
-        character = Character(character)
+def get_character_data(charname, stat):
+    """
+    Get one of the character's stats.
+    (in this context, "stat" can also refer to equipment, gold, spells, etc...)
+
+    :param str charname: name of the character
+    :param str stat: the stat to fetch
+
+    :returns: the stat
+    :rtype: basetype
+    """
+    charpath = os.path.join(_CHARACTER_FOLDER, charname)
+    if charpath in glob.glob(_CHARACTER_FOLDER):
+        char = Character(lfile=charpath)
+    else:
+        char = Character(sheetlink=charname)
+        char.savelocal(charpath)
     return getattr(char, stat)
 
 
-def get_character_ability_mod(character, stat):
-    if not isinstance(character, Character):
-        character = Character(character)
-    return getattr(char, stat+"_mod")
-
-
 if __name__ == "__main__":
-    char = Character(sheetlink="DriveTest", loadfull=True)
-    print(char.NAME)
-    print(char.STR_mod)
+    CHARA = Character(sheetlink="DriveTest", loadfull=True)
+    print(CHARA.NAME)
+    print(CHARA.STR_mod)

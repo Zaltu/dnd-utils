@@ -156,6 +156,22 @@ class Character:
             return self.sheets[sheet][row][column]
         return self.gc.get_worksheet(sheet).cell(row, column).value
 
+    def savelocal(self, path):
+        """
+        Write this character's information sheets to a local file.
+        This will overwrite any existing file with the same name.
+        This file can be used to recreate a character instance at another point.
+
+        :param str path: path to write
+
+        :raises BadCharacterException: if there is a problem writing the data to file
+        """
+        try:
+            with open(path, "w+") as outfile:
+                outfile.write(json.dumps(self.sheets))
+        except IOError:
+            raise BadCharacterException("Could not create or overwrite file at %s" % path)
+
 
 def _get_ability_modifier(ability):
     """
