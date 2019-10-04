@@ -1,2 +1,5 @@
 # Ignore gcloud creds
 credentials.json
+
+# Ignore compiled python
+__pycache__/

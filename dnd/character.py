@@ -2,6 +2,8 @@
 Holding module for all the constants required to access a specific character's data.
 """
 #pylint: disable=multiple-statements,invalid-name
+import math
+import json
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 
@@ -11,61 +13,86 @@ CREDENTIALS = ServiceAccountCredentials.from_json_keyfile_name('credentials.json
 GC = gspread.authorize(CREDENTIALS)
 
 _EQUIPMENT_INDEX = 36
+_GOLD_RANGE = "B65:E65"
 
 class Character:
     """
-    Represents a character sheet
+    Represents a character sheet. Can be given either a file path ora URL to a google drive character sheet.
 
+    :param str lfile: path to file that contains the character data
     :param str sheetlink: Technically the name of the sheet in gdrive, generally the character's name
     :param bool loadfull: whether the full character sheet should be loaded on object creation
     """
     basesheet = None
     spellsheet = None
     featsheet = None
-    def __init__(self, sheetlink, loadfull=False):
-        self.gc = GC.open(sheetlink)
-        self.loadfull = loadfull
-        if loadfull:
-            self.sheets = [
-                self.gc.sheet1.get_all_values(),
-                #self.gc.get_worksheet(1).get_all_values(),
-                #self.gc.get_worksheet(2).get_all_values()
-            ]
+    def __init__(self, lfile=None, sheetlink=None, loadfull=False):
+        if sheetlink is not None:
+            self.gc = GC.open(sheetlink)
+            self.loadfull = loadfull
+            if loadfull:
+                self.sheets = {
+                    0: self.gc.sheet1.get_all_values(),
+                    #1: self.gc.get_worksheet(1).get_all_values(),
+                    #2: self.gc.get_worksheet(2).get_all_values()
+                }
+        elif lfile is not None:
+            try:
+                with open(lfile, "r") as charfile:
+                    self.sheets = json.load(charfile)
+            except IOError:
+                raise BadCharacterException("Cannot find file %s" % lfile)
+        else:
+            raise BadCharacterException(
+                "Character location not provided.\nYou must provide a local file path or a google drive URL."
+            )
 
     #pylint: disable=missing-docstring,missing-return-doc,missing-return-type-doc
     @property
-    def NAME(self): return self._data_at(1, 1)
+    def NAME(self): return self._data_at(0, 0)
     @property
-    def PLAYER(self): return self._data_at(1, 5)
+    def PLAYER(self): return self._data_at(0, 4)
 
     @property
-    def RACE(self): return self._data_at(3, 5)
+    def RACE(self): return self._data_at(2, 4)
     @property
-    def CLASS(self): return self._data_at(3, 1)
+    def CLASS(self): return self._data_at(2, 0)
     @property
-    def ALIGNMENT(self): return self._data_at(3, 6)
+    def ALIGNMENT(self): return self._data_at(2, 5)
     @property
-    def DEITY(self): return self._data_at(3, 7)
+    def DEITY(self): return self._data_at(2, 6)
 
     @property
-    def LEVEL(self): return self._data_at(3, 1)
+    def LEVEL(self): return self._data_at(2, 0)
     @property
-    def HP(self): return self._data_at(8, 9)
+    def HP(self): return self._data_at(7, 8)
     @property
-    def AC(self): return self._data_at(12, 9)
+    def AC(self): return self._data_at(11, 8)
 
     @property
-    def STR(self): return self._data_at(10, 2)
+    def STR(self): return self._data_at(9, 1)
     @property
-    def DEX(self): return self._data_at(11, 2)
+    def STR_mod(self): return _get_ability_modifier(self.STR)
     @property
-    def INT(self): return self._data_at(13, 2)
+    def DEX(self): return self._data_at(10, 1)
     @property
-    def CON(self): return self._data_at(12, 2)
+    def DEX_mod(self): return _get_ability_modifier(self.DEX)
     @property
-    def WIS(self): return self._data_at(14, 2)
+    def INT(self): return self._data_at(12, 1)
     @property
-    def CHA(self): return self._data_at(15, 2)
+    def INT_mod(self): return _get_ability_modifier(self.INT)
+    @property
+    def CON(self): return self._data_at(11, 1)
+    @property
+    def CON_mod(self): return _get_ability_modifier(self.CON)
+    @property
+    def WIS(self): return self._data_at(13, 1)
+    @property
+    def WIS_mod(self): return _get_ability_modifier(self.WIS)
+    @property
+    def CHA(self): return self._data_at(14, 1)
+    @property
+    def CHA_mod(self): return _get_ability_modifier(self.CHA)
     #pylint: enable=missing-docstring,missing-return-doc,missing-return-type-doc
 
     @property
@@ -106,7 +133,7 @@ class Character:
         :returns: character's gold
         :rtype: dict
         """
-        ps = self.data.sheet1.range("B65:E65")
+        ps = self.data.sheet1.range(_GOLD_RANGE)
         return {
             "PP": ps[0].value,
             "GP": ps[1].value,
@@ -128,3 +155,22 @@ class Character:
         if self.loadfull:
             return self.sheets[sheet][row][column]
         return self.gc.get_worksheet(sheet).cell(row, column).value
+
+
+def _get_ability_modifier(ability):
+    """
+    Return the ability modifier for a given ability score.
+    Ability modifiers are -5 at 0, and increment by 1 every 2 ability points.
+
+    :param int ability: the full ability score
+
+    :returns: ability modifier
+    :rtype: int
+    """
+    return math.floor(int(ability)/2 - 5)
+
+
+class BadCharacterException(Exception):
+    """
+    Character exception class
+    """

@@ -37,6 +37,13 @@ def get_character_stats(character, stat):
     return getattr(char, stat)
 
 
+def get_character_ability_mod(character, stat):
+    if not isinstance(character, Character):
+        character = Character(character)
+    return getattr(char, stat+"_mod")
+
+
 if __name__ == "__main__":
-    char = Character("DriveTest", loadfull=True)
+    char = Character(sheetlink="DriveTest", loadfull=True)
     print(char.NAME)
+    print(char.STR_mod)
