@@ -1,0 +1,60 @@
+{
+    "negative energy flood": {
+        "casting_range": "60 feet",
+        "casting_time": "1 action",
+        "classes": [
+            "Warlock",
+            "Wizard"
+        ],
+        "components": [
+            ""
+        ],
+        "desc": "You send ribbons of negative energy at one creature you can see within range. Unless the target is undead, it must make a Constitution saving throw, taking 5d12 necrotic damage on a failed save, or half as much damage on a successful one. A target killed by this damage rises up as a zombie at the start of your next turn. The zombie pursues whatever creature it can see that is closest to it. Statistics for the zombie are in the Monster Manual. If you target an undead with this spell, the target doesn\u2019t make a saving throw. Instead, roll 5d12. The target gains half the total as temporary hit points. \n",
+        "duration": "Instantaneous",
+        "level": 5,
+        "magic_school": "Necromancy",
+        "materials": "A broken bone and a square of black silk",
+        "name": "Negative Energy Flood",
+        "ritual": false
+    },
+    "nondetection": {
+        "casting_range": "Touch",
+        "casting_time": "1 action",
+        "classes": [
+            "Bard",
+            "Ranger",
+            "Wizard"
+        ],
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
+        "desc": "For the duration, you hide a target that you touch from divination magic. \nThe target can be a willing creature or a place or an object no larger than 10 feet in any dimension. The target can\u2019t be targeted by any divination magic or perceived through magical scrying sensors. \n",
+        "duration": "8 hours",
+        "level": 3,
+        "magic_school": "Abjuration",
+        "materials": "A pinch of diamond dust worth 25 gp sprinkled over the target, which the spell consumes",
+        "name": "Nondetection",
+        "ritual": false
+    },
+    "nystuls magic aura": {
+        "casting_range": "Touch",
+        "casting_time": "1 action",
+        "classes": [
+            "Wizard"
+        ],
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
+        "desc": "You place an illusion on a creature or an object you touch so that divination spells reveal false information about it. \nThe target can be a willing creature or an object that isn\u2019t being carried or worn by another creature. \n\nWhen you cast the spell, choose one or both of the following effects. The effect lasts for the duration. If you cast this spell on the same creature or object every day for 30 days, placing the same effect on it each time, the illusion lasts until it is dispelled. False AuraYou change the way the target appears to spells and magical effects, such as detect magic, that detect magical auras. You can make a nonmagical object appear magical, a magical object appear nonmagical, or change the object\u2019s magical aura so that it appears to belong to a specific school of magic that you choose. When you use this effect on an object, you can make the false magic apparent to any creature that handles the item. \n\nMaskYou change the way the target appears to spells and magical effects that detect creature types, such as a paladin\u2019s Divine Sense or the trigger of a sym bol spell. You choose a creature type and other spells and magical effects treat the target as if it were a creature of that type or of that alignment. \n",
+        "duration": "24 hours",
+        "level": 2,
+        "magic_school": "Illusion",
+        "materials": "A small square of silk",
+        "name": "Nystuls Magic Aura",
+        "ritual": false
+    }
+}

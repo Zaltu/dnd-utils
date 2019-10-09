@@ -1,0 +1,2 @@
+gspread
+oauth2client==4.*

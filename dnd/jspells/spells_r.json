@@ -1,0 +1,260 @@
+{
+    "raise dead": {
+        "casting_range": "Touch",
+        "casting_time": "1 hour",
+        "classes": [
+            "Bard",
+            "Cleric",
+            "Paladin"
+        ],
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
+        "desc": "You return a dead creature you touch to life, provided that it has been dead no longer than 10 days. If the creature\u2019s soul is both willing and at liberty to rejoin the body, the creature returns to life with 1 hit point. \n\nThis spell also neutralizes any poison and cures nonmagical diseases that affected the creature at the time it died. This spell doesn\u2019t, however, remove magical diseases, curses, or similar effects; if these aren\u2019t first removed prior to casting the spell, they take effect when the creature returns to life. The spell can\u2019t return an undead creature to life. \n\nThis spell closes all mortal wounds, but it doesn\u2019t restore missing body parts. If the creature is lacking body parts or organs integral for its survival \u2013 its head, for instance \u2013 the spell automatically fails. \n\nComing back from the dead is an ordeal. The target takes a -4 penalty to all attack rolls, saving throws, and ability checks. Every time the target finishes a long rest, the penalty is reduced by 1 until it disappears. \n",
+        "duration": "Instantaneous",
+        "level": 5,
+        "magic_school": "Necromancy",
+        "materials": "A diamond worth at least 500 gp, which the spell consumes",
+        "name": "Raise Dead",
+        "ritual": false
+    },
+    "rarys telepathic bond": {
+        "casting_range": "30 feet",
+        "casting_time": "1 action",
+        "classes": [
+            "Wizard"
+        ],
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
+        "desc": "You forge a telepathic link among up to eight willing creatures of your choice within range, psychically linking each creature to all the others for the duration. Creatures with Intelligence scores of 2 or less aren\u2019t affected by this spell. \n\nUntil the spell ends, the targets can communicated telepathically through the bond whether or not they have a common language. The communication is possible over any distance, though it can\u2019t extend to other planes of existence. \n",
+        "duration": "1 hour",
+        "level": 5,
+        "magic_school": "Divination",
+        "materials": "Pieces of eggshell from two different kinds of creatures",
+        "name": "Rarys Telepathic Bond",
+        "ritual": true
+    },
+    "ray of enfeeblement": {
+        "casting_range": "60 feet",
+        "casting_time": "1 action",
+        "classes": [
+            "Warlock",
+            "Wizard"
+        ],
+        "components": [
+            "V",
+            "S"
+        ],
+        "desc": "A black beam of enervating energy springs from your finger toward a creature within range. \nMake a ranged spell attack against the target. On a hit, the target deals only half damage with weapon attacks that use Strength until the spell ends. \n\nAt the end of each of the target\u2019s turns, it can make a Constitution saving throw against the spell. On a success, the spell ends. \n",
+        "duration": "Concentration, up to 1 minute",
+        "level": 2,
+        "magic_school": "Necromancy",
+        "materials": "",
+        "name": "Ray Of Enfeeblement",
+        "ritual": false
+    },
+    "ray of frost": {
+        "casting_range": "60 feet",
+        "casting_time": "1 action",
+        "classes": [
+            "Sorcerer",
+            "Wizard"
+        ],
+        "components": [
+            "V",
+            "S"
+        ],
+        "desc": "A frigid beam of blue-white light streaks toward a creature within range. Make a ranged spell attack against the target. On a hit, it takes 1d8 cold damage, and its speed is reduced by 10 feet until the start of your next turn. \n\nAt Higher Levels: The spell\u2019s damage increases by 1d8 when you reach 5th level (2d8), 11th level (3d8), and 17th level (4d8). \n",
+        "duration": "Instantaneous",
+        "level": 0,
+        "magic_school": "Evocation",
+        "materials": "",
+        "name": "Ray Of Frost",
+        "ritual": false
+    },
+    "ray of sickness": {
+        "casting_range": "60 feet",
+        "casting_time": "1 action",
+        "classes": [
+            "Sorcerer",
+            "Wizard"
+        ],
+        "components": [
+            "V",
+            "S"
+        ],
+        "desc": "A ray of sickening greenish energy lashes out toward a creature within range. \n\nMake a ranged spell attack against the target. On a hit, the target takes 2d8 poison damage and must make a Constitution saving throw. On a failed save, it is also poisoned until the end of your next turn. \n\nAt Higher Levels: When you cast this spell using a spell slot of 2nd level or higher, the damage increases by 1d8 for each slot level above 1st. \n",
+        "duration": "Instantaneous",
+        "level": 1,
+        "magic_school": "Necromancy",
+        "materials": "",
+        "name": "Ray Of Sickness",
+        "ritual": false
+    },
+    "regenerate": {
+        "casting_range": "Touch",
+        "casting_time": "1 minute",
+        "classes": [
+            "Bard",
+            "Cleric",
+            "Druid"
+        ],
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
+        "desc": "You touch a creature and stimulate its natural healing ability. \nThe target regains 4d8 + 15 hit points. For the duration of the spell, the target regains 1 hit point at the start of each of its turns (10 hit points each minute). \n\nThe target\u2019s severed body members (fingers, legs, tails, and so on), if any, are restored after 2 minutes. If you have the severed part and hold it to the stump, the spell instantaneously causes the limb to knit to the stump. \n",
+        "duration": "1 hour",
+        "level": 7,
+        "magic_school": "Transmutation",
+        "materials": "A prayer wheel and holy water",
+        "name": "Regenerate",
+        "ritual": false
+    },
+    "reincarnate": {
+        "casting_range": "Touch",
+        "casting_time": "1 hour",
+        "classes": [
+            "Druid"
+        ],
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
+        "desc": "You touch a dead humanoid or a piece of a dead humanoid. Provided that the creature has been dead no longer than 10 days, the spell forms a new adult body for it and then calls the soul to enter that body. If the target\u2019s soul isn\u2019t free or willing to do so, the spell fails. \n\nThe magic fashions a new body for the creature to inhabit, which likely causes the creature\u2019s race to change. The DM rolls a d 100 and consults the following table to determine what form the creature takes when restored to life, or the DM chooses a form. \n\nd100 \u00a0Race01-04 Dragonborn05-13 Dwarf, hill14-21 Dwarf, mountain22-25 Elf, dark26-34 Elf, high35-42 Elf, wood43-46 Gnome, forest47-52 Gnome, rock53-56  Half-elf57-60 Half-orc61-68 Halfling, lightfoot69-76 Halfling, stout77-96 Human97-00 TieflingThe reincarnated creature recalls its former life and experiences. It retains the capabilities it had in its original form, except it exchanges its original race for the new one and changes its racial traits accordingly. \n",
+        "duration": "Instantaneous",
+        "level": 5,
+        "magic_school": "Transmutation",
+        "materials": "Rare oils and unguents worth at least 1,000 gp, which the spell consumes",
+        "name": "Reincarnate",
+        "ritual": false
+    },
+    "remove curse": {
+        "casting_range": "Touch",
+        "casting_time": "1 action",
+        "classes": [
+            "Cleric",
+            "Paladin",
+            "Warlock",
+            "Wizard"
+        ],
+        "components": [
+            "V",
+            "S"
+        ],
+        "desc": "At your touch, all curses affecting one creature or object end. If the object is a cursed magic item, its curse remains, but the spell breaks its owner\u2019s attunement to the object so it can be removed or discarded. \n",
+        "duration": "Instantaneous",
+        "level": 3,
+        "magic_school": "Abjuration",
+        "materials": "",
+        "name": "Remove Curse",
+        "ritual": false
+    },
+    "resistance": {
+        "casting_range": "Touch",
+        "casting_time": "1 action",
+        "classes": [
+            "Cleric",
+            "Druid"
+        ],
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
+        "desc": "You touch one willing creature. Once before the spell ends, the target can roll a d4 and add the number rolled to one saving throw of its choice. It can roll the die before or after the saving throw. The spell then ends. \n",
+        "duration": "Concentration, up to 1 minute",
+        "level": 0,
+        "magic_school": "Abjuration",
+        "materials": "A miniature cloak",
+        "name": "Resistance",
+        "ritual": false
+    },
+    "resurrection": {
+        "casting_range": "Touch",
+        "casting_time": "1 hour",
+        "classes": [
+            "Bard",
+            "Cleric"
+        ],
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
+        "desc": "You touch a dead creature that has been dead for no more than a century, that didn\u2019t die of old age, and that isn\u2019t undead. If its soul is free and willing, the target returns to life with all its hit points. \n\nThis spell neutralizes any poisons and cures normal diseases afflicting the creature when it died. It doesn\u2019t, however, remove magical diseases, curses, and the like; if such affects aren\u2019t removed prior to casting the spell, they afflict the target on its return to life. \n\nThis spell closes all mortal wounds and restores any missing body parts. \n\nComing back from the dead is an ordeal. The target takes a -4 penalty to all attack rolls, saving throws, and ability checks. Every time the target finishes a long rest, the penalty is reduced by 1 until it disappears. \n\nCasting this spell to restore life to a creature that has been dead for one year or longer taxes you greatly. Until you finish a long rest, you can\u2019t cast spells again, and you have disadvantage on all attack rolls, ability checks, and saving throws. \n",
+        "duration": "Instantaneous",
+        "level": 7,
+        "magic_school": "Necromancy",
+        "materials": "A diamond worth at least 1,000 gp, which the spell consumes",
+        "name": "Resurrection",
+        "ritual": false
+    },
+    "reverse gravity": {
+        "casting_range": "100 feet",
+        "casting_time": "1 action",
+        "classes": [
+            "Druid",
+            "Sorcerer",
+            "Wizard"
+        ],
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
+        "desc": "This spell reverses gravity in a 50-foot-radius, 100-foot high cylinder centered on a point within range. \nAll creatures and objects that aren\u2019t somehow anchored to the ground in the area fall upward and reach the top of the area when you cast this spell. A creature can make a Dexterity saving throw to grab onto a fixed object it can reach, thus avoiding the fall. \n\nIf some solid object (such as a ceiling) is encountered in this fall, falling objects and creatures strike it just as they would during a normal downward fall. If an object or creature reaches the top of the area without striking anything, it remains there, oscillating slightly, for the duration. \n\nAt the end of the duration, affected objects and creatures fall back down. \n",
+        "duration": "Concentration, up to 1 minute",
+        "level": 7,
+        "magic_school": "Transmutation",
+        "materials": "A lodestone and iron filings",
+        "name": "Reverse Gravity",
+        "ritual": false
+    },
+    "revivify": {
+        "casting_range": "Touch",
+        "casting_time": "1 action",
+        "classes": [
+            "Cleric",
+            "Paladin"
+        ],
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
+        "desc": "You touch a creature that has died within the last minute. That creature returns to life with 1 hit point. This spell can\u2019t return to life a creature that has died of old age, nor can it restore any missing body parts. \n",
+        "duration": "Instantaneous",
+        "level": 3,
+        "magic_school": "Necromancy",
+        "materials": "Diamonds worth 300 gp, which the spell consumes",
+        "name": "Revivify",
+        "ritual": false
+    },
+    "rope trick": {
+        "casting_range": "Touch",
+        "casting_time": "1 action",
+        "classes": [
+            "Wizard"
+        ],
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
+        "desc": "You touch a length of rope that is up to 60 feet long. One end of the rope then rises into the air until the whole rope hangs perpendicular to the ground. At the upper end of the rope, an invisible entrance opens to an extradimensional space that lasts until the spell ends. \n\nThe extradimensional space can be reached by climbing to the top of the rope. The space can hold as many as eight Medium or smaller creatures. The rope can be pulled into the space, making the rope disappear from view outside the space. \n\nAttacks and spells can\u2019t cross through the entrance into or out of the extradimensional space, but those inside can see out of it as if through a 3-foot-by-5-foot window centered on the rope. \n\nAnything inside the extradimensional space drops out when the spell ends. \n",
+        "duration": "1 hour",
+        "level": 2,
+        "magic_school": "Transmutation",
+        "materials": "Powdered corn extract and a twisted loop of parchment",
+        "name": "Rope Trick",
+        "ritual": false
+    }
+}

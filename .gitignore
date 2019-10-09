@@ -3,3 +3,6 @@ credentials.json
 
 # Ignore compiled python
 __pycache__/
+
+# Dont reupload all the spells from dungeon-sheets
+_utils/spells/

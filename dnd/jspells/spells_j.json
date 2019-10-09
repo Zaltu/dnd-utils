@@ -1,0 +1,24 @@
+{
+    "jump": {
+        "casting_range": "Touch",
+        "casting_time": "1 action",
+        "classes": [
+            "Druid",
+            "Ranger",
+            "Sorcerer",
+            "Wizard"
+        ],
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
+        "desc": "You touch a creature. The creature\u2019s jump distance is tripled until the spell ends. \n",
+        "duration": "1 minute",
+        "level": 1,
+        "magic_school": "Transmutation",
+        "materials": "A grasshopper\u2019s hind leg",
+        "name": "Jump",
+        "ritual": false
+    }
+}

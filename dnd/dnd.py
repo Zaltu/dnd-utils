@@ -3,11 +3,13 @@ Various utilities (dice rolls, spell descriptions, character sheets, etc...) use
 """
 import os
 import glob
+import json
 import random
 
 from character import Character
 
-_CHARACTER_FOLDER = "chars/*"  # TODO
+_CHARACTER_FOLDER = os.path.abspath(os.path.join(__file__, "../", "chars/*"))
+_SPELL_FOLDER = os.path.abspath(os.path.join(__file__, "../", "jspells/"))
 
 
 def xdy(sides, amount=1):
@@ -23,17 +25,21 @@ def xdy(sides, amount=1):
     return [random.randint(1, sides) for i in range(1, amount+1)]
 
 
-def spelldesc(spellname, spellist=None):
+def get_spell_desc(spellname):
     """
     Fetch and return a spell's description.
 
     :param str spellname: the name of the spell to describe
-    :param str spellist: option spellist the spell can be found it for efficiency
 
     :returns: the spell's description
     :rtype: str
     """
-    return (spellname, spellist)  # NYI
+    fletter = spellname[0].lower()
+    path = os.path.join(_SPELL_FOLDER, "spells_"+fletter+".json")
+    spell = None
+    with open(path, "r") as spellf:
+        spell = json.load(spellf).get(spellname.lower())
+    return spell["desc"]
 
 
 def get_character_data(charname, stat):
@@ -47,7 +53,7 @@ def get_character_data(charname, stat):
     :returns: the stat
     :rtype: basetype
     """
-    charpath = os.path.join(_CHARACTER_FOLDER, charname)
+    charpath = os.path.abspath(os.path.join(_CHARACTER_FOLDER[:-1], charname.lower()+".json"))
     if charpath in glob.glob(_CHARACTER_FOLDER):
         char = Character(lfile=charpath)
     else:
@@ -57,6 +63,14 @@ def get_character_data(charname, stat):
 
 
 if __name__ == "__main__":
-    CHARA = Character(sheetlink="DriveTest", loadfull=True)
-    print(CHARA.NAME)
-    print(CHARA.STR_mod)
+    #from pprint import pprint as pp
+    #CHARA = Character(sheetlink="DriveTest", loadfull=True)
+    #CHARA.savelocal("Claude")
+    #CHARA = Character(lfile="chars/Claude.json")
+    #pp(CHARA.spells)
+    #pp(CHARA.gold)
+    #pp(CHARA.NAME)
+    #pp(CHARA.STR_mod)
+    #pp(get_spell_desc("fireball"))
+    #pp(get_character_data("Claude", "gold"))
+    pass

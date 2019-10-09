@@ -2,6 +2,7 @@
 Holding module for all the constants required to access a specific character's data.
 """
 #pylint: disable=multiple-statements,invalid-name
+import os
 import math
 import json
 import gspread
@@ -9,11 +10,10 @@ from oauth2client.service_account import ServiceAccountCredentials
 
 SCOPE = ['https://spreadsheets.google.com/feeds',
          'https://www.googleapis.com/auth/drive']
-CREDENTIALS = ServiceAccountCredentials.from_json_keyfile_name('credentials.json', SCOPE)
-GC = gspread.authorize(CREDENTIALS)
+CREDFILE = os.path.abspath(os.path.join(__file__, "../", "auth", "credentials.json"))
+CREDENTIALS = ServiceAccountCredentials.from_json_keyfile_name(CREDFILE, SCOPE)
 
 _EQUIPMENT_INDEX = 36
-_GOLD_RANGE = "B65:E65"
 
 class Character:
     """
@@ -28,13 +28,14 @@ class Character:
     featsheet = None
     def __init__(self, lfile=None, sheetlink=None, loadfull=False):
         if sheetlink is not None:
+            GC = gspread.authorize(CREDENTIALS)
             self.gc = GC.open(sheetlink)
             self.loadfull = loadfull
             if loadfull:
                 self.sheets = {
-                    0: self.gc.sheet1.get_all_values(),
-                    #1: self.gc.get_worksheet(1).get_all_values(),
-                    #2: self.gc.get_worksheet(2).get_all_values()
+                    "base": self.gc.sheet1.get_all_values(),
+                    "magic": self.gc.get_worksheet(1).get_all_values(),
+                    #"feats": self.gc.get_worksheet(2).get_all_values()
                 }
         elif lfile is not None:
             try:
@@ -42,6 +43,7 @@ class Character:
                     self.sheets = json.load(charfile)
             except IOError:
                 raise BadCharacterException("Cannot find file %s" % lfile)
+            self.loadfull = True
         else:
             raise BadCharacterException(
                 "Character location not provided.\nYou must provide a local file path or a google drive URL."
@@ -104,9 +106,9 @@ class Character:
         :rtype: list
         """
         if not self.loadfull:
-            self.sheets = [self.gc.sheet1.get_all_values()]
+            self.sheets = {"base": self.gc.sheet1.get_all_values()}
         enames = []
-        for eqrow in self.sheets[0][_EQUIPMENT_INDEX:]:
+        for eqrow in self.sheets["base"][_EQUIPMENT_INDEX:]:
             if eqrow[0] == "MONEY":
                 break
             if eqrow[0]:
@@ -122,8 +124,23 @@ class Character:
         pass
 
     @property
-    def spells(self):
-        pass
+    def spells(self, level=None):
+        """
+        Fetch a formatted list of spells marked as known on the character sheet.
+
+        :param int level: optionally return only the spells of a certain level
+
+        :returns: spell breakdown
+        :rtype: dict|list
+        """
+        breakdown = {}
+        for block in self.sheets["magic"][2]:
+            if block:
+                breakdown[self.sheets["magic"][2].index(block)] = block.split("\n")
+        for block in self.sheets["magic"][4]:
+            if block:
+                breakdown[self.sheets["magic"][4].index(block)+5] = block.split("\n")
+        return breakdown.get(level) if level else breakdown
 
     @property
     def gold(self):
@@ -133,12 +150,11 @@ class Character:
         :returns: character's gold
         :rtype: dict
         """
-        ps = self.data.sheet1.range(_GOLD_RANGE)
         return {
-            "PP": ps[0].value,
-            "GP": ps[1].value,
-            "SP": ps[2].value,
-            "CP": ps[3].value,
+            "PP": self.sheets["base"][64][1],
+            "GP": self.sheets["base"][64][2],
+            "SP": self.sheets["base"][64][3],
+            "CP": self.sheets["base"][64][4]
         }
 
     def _data_at(self, row, column, sheet=0):
@@ -166,9 +182,11 @@ class Character:
 
         :raises BadCharacterException: if there is a problem writing the data to file
         """
+        if not self.loadfull:
+            raise BadCharacterException("Cannot save character unless fully loaded.")
         try:
             with open(path, "w+") as outfile:
-                outfile.write(json.dumps(self.sheets))
+                outfile.write(json.dumps(self.sheets, indent=4, sort_keys=True))
         except IOError:
             raise BadCharacterException("Could not create or overwrite file at %s" % path)
 
