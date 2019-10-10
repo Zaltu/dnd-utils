@@ -6,7 +6,7 @@ import glob
 import json
 import random
 
-from character import Character
+from dnd.character import Character
 
 _CHARACTER_FOLDER = os.path.abspath(os.path.join(__file__, "../", "chars/*"))
 _SPELL_FOLDER = os.path.abspath(os.path.join(__file__, "../", "jspells/"))
