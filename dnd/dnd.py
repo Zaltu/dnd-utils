@@ -6,7 +6,7 @@ import glob
 import json
 import random
 
-from dnd.character import Character
+from dnd.character import Character  #pylint: disable=no-name-in-module
 
 _CHARACTER_FOLDER = os.path.abspath(os.path.join(__file__, "../", "chars/*"))
 _SPELL_FOLDER = os.path.abspath(os.path.join(__file__, "../", "jspells/"))
