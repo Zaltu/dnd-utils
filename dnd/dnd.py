@@ -38,8 +38,8 @@ def get_spell_desc(spellname):
     path = os.path.join(_SPELL_FOLDER, "spells_"+fletter+".json")
     spell = None
     with open(path, "r") as spellf:
-        spell = json.load(spellf).get(spellname.lower())
-    return spell["desc"]
+        spell = json.load(spellf).get(spellname.lower()) or {}
+    return spell.get("desc")
 
 
 def get_character_data(charname, stat):
