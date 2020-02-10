@@ -6,7 +6,7 @@ import glob
 import json
 import random
 
-from dnd.character import Character  #pylint: disable=no-name-in-module
+from dnd.character_gsheet import GCharacter  #pylint: disable=no-name-in-module
 
 _CHARACTER_FOLDER = os.path.abspath(os.path.join(__file__, "../", "chars/*"))
 _SPELL_FOLDER = os.path.abspath(os.path.join(__file__, "../", "jspells/"))
@@ -55,9 +55,9 @@ def get_character_data(charname, stat):
     """
     charpath = os.path.abspath(os.path.join(_CHARACTER_FOLDER[:-1], charname.lower()+".json"))
     if charpath in glob.glob(_CHARACTER_FOLDER):
-        char = Character(lfile=charpath)
+        char = GCharacter(lfile=charpath)
     else:
-        char = Character(sheetlink=charname)
+        char = GCharacter(sheetlink=charname)
         char.savelocal(charpath)
     return getattr(char, stat)
 

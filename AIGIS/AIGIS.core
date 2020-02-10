@@ -1,6 +1,6 @@
 """
 Define imported objects
 """
-from dnd import dnd
+import dnd
 
-SKILLS = ["dnd.get_spell_desc", "dnd.get_character_data"]
+SKILLS = ["dnd."+attr for attr in dnd.__all__]

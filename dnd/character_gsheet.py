@@ -15,7 +15,7 @@ CREDENTIALS = ServiceAccountCredentials.from_json_keyfile_name(CREDFILE, SCOPE)
 
 _EQUIPMENT_INDEX = 36
 
-class Character:
+class GCharacter:
     """
     Represents a character sheet. Can be given either a file path ora URL to a google drive character sheet.
 
