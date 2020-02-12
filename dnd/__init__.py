@@ -1,10 +1,11 @@
 """
 D&D constants. SLightly adjusted to our game though.
 """
-from dnd.utils import get_spell_desc, get_character_data
+from dnd.utils import get_spell_desc, get_character_data, xdy
+from dnd.character_create import create_character_sheet
 #pylint: disable=line-too-long
 __all__ = ["CLASSES", "SUBCLASSES", "RACES", "SKILLS", "ALIGNMENTS", "BACKGROUNDS", "IDEALS", "BONDS", "FLAWS", "LANGUAGES", "WEAPONS", "EQUIPEMENT", "ARMOR", "SHIELD",
-           "get_spell_desc", "get_character_data"]
+           "get_spell_desc", "get_character_data", "xdy", "create_character_sheet"]
 CLASSES = [
     "Barbarian",
     "Bard",
@@ -32,6 +33,20 @@ SUBCLASSES = {
     "Sorceror": ["DraconicBloodline", "WildMagic", "DivineSoul", "ShadowMagic", "StormSorcery"],
     "Warlock": ["Archfey", "Fiend", "GreatOldOne", "Celestial", "Hexblade"],
     "Wizard": ["Abjuration", "Conjuration", "Divination", "Enchantment", "Evocation", "Illusion", "Necromancy", "Transmutation", "WarMagic"]
+}
+CLASS_HP = {
+    "Barbarian": 12,
+    "Bard": 4,
+    "Cleric": 8,
+    "Druid": 8,
+    "Fighter": 10,
+    "Monk": 8,
+    "Paladin": 10,
+    "Ranger": 8,
+    "Rogue": 6,
+    "Sorceror": 8,
+    "Warlock": 8,
+    "Wizard": 4
 }
 RACES = [
     "HillDwarf",

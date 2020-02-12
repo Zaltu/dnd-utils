@@ -62,7 +62,7 @@ REQUIRED_PARAMS = {
     "charisma"
 }
 
-def create_character_instance(path, **kwargs):
+def create_character_sheet(path, **kwargs):
     """
     From various inputs, generate a D&D character sheet that could be used elswhere.
 
@@ -118,4 +118,4 @@ if __name__ == "__main__":
         "wisdom": 10,
         "charisma": 10
     }
-    create_character_instance(os.path.dirname(__file__), **TEST)
+    create_character_sheet(os.path.dirname(__file__), **TEST)
