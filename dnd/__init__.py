@@ -4,7 +4,7 @@ D&D constants. SLightly adjusted to our game though.
 from dnd.utils import get_spell_desc, get_character_data, xdy
 from dnd.character_create import create_character_sheet
 #pylint: disable=line-too-long
-__all__ = ["CLASSES", "SUBCLASSES", "RACES", "SKILLS", "ALIGNMENTS", "BACKGROUNDS", "IDEALS", "BONDS", "FLAWS", "LANGUAGES", "WEAPONS", "EQUIPEMENT", "ARMOR", "SHIELD",
+__all__ = ["CLASSES", "SUBCLASSES", "RACES", "SKILLS", "ALIGNMENTS", "BACKGROUNDS", "IDEALS", "BONDS", "FLAWS", "LANGUAGES", "WEAPONS", "EQUIPEMENT", "ARMOR", "SHIELD", "CLASS_HP",
            "get_spell_desc", "get_character_data", "xdy", "create_character_sheet"]
 CLASSES = [
     "Barbarian",
