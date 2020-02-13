@@ -4,9 +4,10 @@ Tool for generating a new character based on some kind of simplified user input.
 import os
 # dungeonsheets.character.Character
 from dungeonsheets import Character
+from dungeonsheets.exceptions import LatexError
 
-FILE_EXTENTION_PDF = "_char.pdf"
-FILE_EXTENTION_FDF = "_char.fdf"
+FILE_EXTENTION_PDF = ".pdf"
+FILE_EXTENTION_FDF = ".fdf"
 PARAMS = {
     "name",
     "player_name",
@@ -62,15 +63,17 @@ REQUIRED_PARAMS = {
     "charisma"
 }
 
-def create_character_sheet(path, **kwargs):
+def create_character_sheet(path, logger, **kwargs):
     """
     From various inputs, generate a D&D character sheet that could be used elswhere.
 
     :param str path: path to the dir to generate the character sheets in
+    :param logging.logger logger: logger
     :param kwargs: args to generate the character. See file docstring for more details.
 
     :raises FileNotFoundError: if the given path is invalid
     :raises AttributeError: if there are invalid or missing arguments
+    :raises RuntimeError: if pdflatex is having issues
     :returns: list of paths to the files generated, [0]=pdf, [1]=fdf
     :rtype: list
     """
@@ -92,30 +95,10 @@ def create_character_sheet(path, **kwargs):
     # Generate character sheet
     char = Character(**kwargs)
     path = os.path.join(path, char.name)
-    char.to_pdf(path, **{"flatten": False})
+    logger.info(f"Generating sheet for {kwargs['race']} {kwargs['class']} {kwargs['name']}")
+    try:
+        char.to_pdf(path, **{"flatten": False})
+    except LatexError:
+        raise RuntimeError("Unable to process LaTeX properly. Check system requirements.")
     # Return file paths, kind of ugly-ly
     return [path+FILE_EXTENTION_PDF, path+FILE_EXTENTION_FDF]
-
-
-
-
-
-
-
-if __name__ == "__main__":
-    TEST = {
-        "name": "John Cena",
-        "player_name": "Zaltu",
-        "alignment": "Chaotic Neutral",
-        "race": "Human",
-        "class": "Monk",
-        "level": 1,
-        "hp_max": 10,
-        "strength": 10,
-        "dexterity": 10,
-        "intelligence": 10,
-        "constitution": 10,
-        "wisdom": 10,
-        "charisma": 10
-    }
-    create_character_sheet(os.path.dirname(__file__), **TEST)
