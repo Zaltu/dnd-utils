@@ -13,6 +13,7 @@ PARAMS = {
     "player_name",
     "alignment",
     "class",
+    "subclass",
     "level",
     "race",
     "background",
