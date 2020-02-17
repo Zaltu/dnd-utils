@@ -36,17 +36,17 @@ SUBCLASSES = {
 }
 CLASS_HP = {
     "Barbarian": 12,
-    "Bard": 4,
+    "Bard": 8,
     "Cleric": 8,
     "Druid": 8,
     "Fighter": 10,
     "Monk": 8,
     "Paladin": 10,
-    "Ranger": 8,
-    "Rogue": 6,
-    "Sorceror": 8,
+    "Ranger": 10,
+    "Rogue": 8,
+    "Sorceror": 6,
     "Warlock": 8,
-    "Wizard": 4
+    "Wizard": 6
 }
 RACES = [
     "HillDwarf",
