@@ -41,7 +41,7 @@ PARAMS = {
     "pp",
     "equipment",
     "weapons",
-    "magic_items"
+    "magic_items",
     "armor",
     "shield",
     "spells_prepared",

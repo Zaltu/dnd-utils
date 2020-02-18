@@ -128,7 +128,7 @@ BACKGROUNDS = [
 ]
 # TODO
 IDEALS = [
-
+    "Believes in hard work and the practice of strict economy."
 ]
 # TODO
 BONDS = [
