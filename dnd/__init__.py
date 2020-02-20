@@ -179,7 +179,7 @@ WEAPONS = [
     "Rapier",
     "Scimitar",
     "Shortsword",
-    "ThrowingHamer",
+    "ThrowingHammer",
     "Trident",
     "Warpick",
     "Warhammer",
