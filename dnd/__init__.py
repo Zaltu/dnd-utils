@@ -181,7 +181,6 @@ WEAPONS = [
     "Shortsword",
     "ThrowingHammer",
     "Trident",
-    "Warpick",
     "Warhammer",
     "Whip",
     "Blowgun",
